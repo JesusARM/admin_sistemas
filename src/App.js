@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import "./App.css";
+import React, { useEffect, useRef } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { Tag } from "primereact/tag";
 import { Message } from "primereact/message";
+import { Messages } from "primereact/messages";
 import { ScrollPanel } from "primereact/scrollpanel";
-import { VirtualScroller } from "primereact/virtualscroller";
 import PropTypes from "prop-types";
 
 function App() {
@@ -75,15 +76,52 @@ function TabMantenimientos(props) {
 
   const Mantenimientos = (
     <div className="col-12">
-      <Message severity="warn" text="4 Mantenimientos en EXPO" className="m-1" />
-      <Message severity="warn" text="2 Mantenimientos en IMPO" className="m-1" />
-      <Message severity="warn" text="5 Mantenimientos en ENLACE" className="m-1" />
+      <Message
+        severity="warn"
+        text="4 Mantenimientos en EXPO"
+        className="m-1"
+      />
+      <Message
+        severity="warn"
+        text="2 Mantenimientos en IMPO"
+        className="m-1"
+      />
+      <Message
+        severity="warn"
+        text="5 Mantenimientos en ENLACE"
+        className="m-1"
+      />
     </div>
   );
 
-  const ResumenMantenimientos = (
-    <div className="surface-200 grid">{Mantenimientos}</div>
+  const mant = (
+    <div className="card">
+      <ScrollPanel style={{ width: "100%", height: "150px" }}>
+        <Message
+          severity="warn"
+          text="4 Mantenimientos en EXPO HOY"
+          className="m-1 col-12"
+        />
+        <Message
+          severity="warn"
+          text="2 Mantenimientos en IMPO Mañana"
+          className="m-1 col-12 red"
+        />
+        <Message
+          severity="info"
+          text="2 Mantenimientos en IMPO Esta Semana"
+          className="m-1 col-12"
+        />
+        <Message
+          severity="info"
+          text="5 Mantenimientos en ENLACE Este Mes"
+          className="m-1 col-12"
+        />
+      </ScrollPanel>
+    </div>
   );
+
+  const ResumenMantenimientos = <div className="surface-200 grid">{mant}</div>;
 
   return (
     <div className="col-5 ">
@@ -119,15 +157,36 @@ function TabSoportes(props) {
     </div>
   );
 
-  const Soportes = (
-    <div className="col-12">
-      <Message severity="info" text="Nuevo soporte en IMPO" className="m-1" />
+  const Sop = (
+    <>
+      <Message
+        severity="info"
+        text="Nuevo soporte en IMPO"
+        className="m-1 col-12"
+      />
       <Message
         severity="success"
         text="Soporte completado en RH"
-        className="m-1"
+        className="m-1 col-12"
       />
-      <Message severity="info" text="Nuevo soporte en ENLACE" className="m-1" />
+      <Message
+        severity="info"
+        text="Nuevo soporte en ENLACE"
+        className="m-1 col-12"
+      />
+      <Message
+        severity="info"
+        text="Nuevo soporte en ENLACE"
+        className="m-1 col-12"
+      />
+    </>
+  );
+
+  const Soportes = (
+    <div className="col-12">
+      <ScrollPanel style={{ width: "100%", height: "170px" }}>
+        {Sop}
+      </ScrollPanel>
     </div>
   );
 
@@ -146,6 +205,15 @@ TabInventario.propTypes = {
   title: PropTypes.string.isRequired,
 };
 function TabInventario(props) {
+  //!Añadir conteo de cuantos equipos tiene y de que tipo
+  const ResumenInventarioApi = [
+    { Cantidad: 28, Tipo: "PC", Estado: "En uso" },
+    { Cantidad: 34, Tipo: "MT", Estado: "En uso" },
+    { Cantidad: 34, Tipo: "CP", Estado: "En uso" },
+    { Cantidad: 2, Tipo: "PC", Estado: "Almacenado" },
+    { Cantidad: 3, Tipo: "MT", Estado: "Almacenado" },
+  ];
+
   const footer = (
     <div className="flex justify-content-end gap-2">
       <Button
@@ -166,7 +234,6 @@ function TabInventario(props) {
       />
     </div>
   );
-  //!Añadir conteo de cuantos equipos tiene y de que tipo
 
   const ContComputoUso = (
     <div className="m-1">
@@ -192,12 +259,24 @@ function TabInventario(props) {
     </div>
   );
 
+  const ContCelUso = (
+    <div className="m-1">
+      <Tag
+        className="mr-2"
+        icon="pi pi-mobile"
+        severity="warning"
+        value="42"
+      ></Tag>
+      Celulares
+    </div>
+  );
+
   const EnUso = (
     <div className="col-6">
       Equipo en uso
       {ContComputoUso}
       {ContMonitUso}
-      {ContComputoUso}
+      {ContCelUso}
     </div>
   );
 
@@ -211,7 +290,7 @@ function TabInventario(props) {
 
   const Dañados = (
     <div className="col-12">
-      <Message severity="warn" text="Hubieron 3 equipos dañados este mes" />
+      <Message severity="warn" text="Hubieron 3 equipos dañados este mes" className="col-12"/>
     </div>
   );
 
