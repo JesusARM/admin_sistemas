@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
-import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
+// import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import "primereact/resources/primereact.css"; // core css
 import "primeicons/primeicons.css"; // icons
 import "primeflex/primeflex.css"; // css utility

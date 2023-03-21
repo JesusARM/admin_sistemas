@@ -31,6 +31,38 @@ function Panel() {
   );
 }
 
+HeadBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  tipo: PropTypes.string.isRequired,
+};
+function HeadBar(props) {
+  return (
+    <div className="grid">
+      <h4 className="col-4 m-0">{props.title}</h4>
+      <div className="flex justify-content-end gap-2 col-8">
+        <Button
+          icon="pi pi-plus"
+          rounded
+          text
+          raised
+          severity="success"
+          label=""
+          tooltip={"Agregar " + props.tipo}
+          tooltipOptions={{ position: "top" }}
+        />
+        <Button
+          icon="pi pi-cog"
+          rounded
+          text
+          raised
+          severity="info"
+          label="Administrar"
+        />
+      </div>
+    </div>
+  );
+}
+
 TabPanel.propTypes = {
   title: PropTypes.string.isRequired,
 };
@@ -96,7 +128,7 @@ function TabMantenimientos(props) {
 
   const mant = (
     <div className="card">
-      <ScrollPanel style={{ width: "100%", height: "150px" }}>
+      <ScrollPanel style={{ width: "100%", height: "200px" }}>
         <Message
           severity="warn"
           text="4 Mantenimientos en EXPO HOY"
@@ -125,7 +157,7 @@ function TabMantenimientos(props) {
 
   return (
     <div className="col-5 ">
-      <Card title={props.title} footer={footer}>
+      <Card title={HeadBar({ title: "Mantenimientos", tipo:"Mantenimiento" })}>
         {ResumenMantenimientos}
       </Card>
     </div>
@@ -194,9 +226,7 @@ function TabSoportes(props) {
 
   return (
     <div className="col-5 ">
-      <Card title={props.title} footer={footer}>
-        {ResumenSoportes}
-      </Card>
+      <Card title={HeadBar({ title: "Soportes", tipo:"Soporte" })}>{ResumenSoportes}</Card>
     </div>
   );
 }
@@ -213,27 +243,6 @@ function TabInventario(props) {
     { Cantidad: 2, Tipo: "PC", Estado: "Almacenado" },
     { Cantidad: 3, Tipo: "MT", Estado: "Almacenado" },
   ];
-
-  const footer = (
-    <div className="flex justify-content-end gap-2">
-      <Button
-        icon="pi pi-plus"
-        rounded
-        text
-        raised
-        severity="success"
-        label="Añadir equipo"
-      />
-      <Button
-        icon="pi pi-user"
-        rounded
-        text
-        raised
-        severity="info"
-        label="Administrar"
-      />
-    </div>
-  );
 
   const ContComputoUso = (
     <div className="m-1">
@@ -290,7 +299,11 @@ function TabInventario(props) {
 
   const Dañados = (
     <div className="col-12">
-      <Message severity="warn" text="Hubieron 3 equipos dañados este mes" className="col-12"/>
+      <Message
+        severity="warn"
+        text="Hubieron 3 equipos dañados este mes"
+        className="col-12"
+      />
     </div>
   );
 
@@ -304,9 +317,8 @@ function TabInventario(props) {
 
   return (
     <div className="col-5 ">
-      <Card title={props.title} footer={footer}>
-        {ResumenInventario}
-      </Card>
+      {/* <Card title={props.title} footer={footer}> */}
+      <Card title={HeadBar({ title: "Inventario" , tipo:"Equipo"})}>{ResumenInventario}</Card>
     </div>
   );
 }
