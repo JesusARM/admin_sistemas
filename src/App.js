@@ -4,6 +4,8 @@ import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { Tag } from "primereact/tag";
 import { Message } from "primereact/message";
+import { ScrollPanel } from "primereact/scrollpanel";
+import { VirtualScroller } from "primereact/virtualscroller";
 import PropTypes from "prop-types";
 
 function App() {
@@ -21,7 +23,7 @@ function Panel() {
   return (
     <div className="grid justify-content-center">
       <TabInventario title="Inventario"></TabInventario>
-      <TabPanel title="Soportes"></TabPanel>
+      <TabSoportes title="Soportes"></TabSoportes>
       <TabPanel title="Mantenimientos"></TabPanel>
       <TabPanel title="Actividades"></TabPanel>
     </div>
@@ -41,6 +43,67 @@ function TabPanel(props) {
           libero asperiores earum nam nobis, culpa ratione quam perferendis
           esse, cupiditate neque quas!
         </p>
+      </Card>
+    </div>
+  );
+}
+
+TabSoportes.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+function TabSoportes(props) {
+  const footer = (
+    <div className="flex justify-content-end gap-2">
+      <Button
+        icon="pi pi-plus"
+        rounded
+        text
+        raised
+        severity="success"
+        label="Añadir soporte"
+      />
+      <Button
+        icon="pi pi-user"
+        rounded
+        text
+        raised
+        severity="info"
+        label="Administrar soportes"
+      />
+    </div>
+  );
+  //!Añadir conteo de cuantos equipos tiene y de que tipo
+  const Contador = (
+    <div className="m-1">
+      <Tag
+        className="mr-2"
+        icon="pi pi-briefcase"
+        severity="info"
+        value="53"
+      ></Tag>
+      Lorem Ipsum
+    </div>
+  );
+
+  const Soportes = (
+    <div className="col-12">
+      <Message severity="info" text="Nuevo soporte en IMPO" className="m-1" />
+      <Message
+        severity="success"
+        text="Soporte completado en RH"
+        className="m-1"
+      />
+      <Message severity="info" text="Nuevo soporte en ENLACE" className="m-1" />
+      <Message severity="info" text="Nuevo soporte en EXPO" className="m-1" />
+    </div>
+  );
+
+  const ResumenSoportes = <div className="surface-200 grid">{Soportes}</div>;
+
+  return (
+    <div className="col-5 ">
+      <Card title={props.title} footer={footer}>
+        {ResumenSoportes}
       </Card>
     </div>
   );
@@ -71,32 +134,45 @@ function TabInventario(props) {
     </div>
   );
   //!Añadir conteo de cuantos equipos tiene y de que tipo
-  const Contador = (
+
+  const ContComputoUso = (
     <div className="m-1">
       <Tag
         className="mr-2"
-        icon="pi pi-briefcase"
+        icon="pi pi-desktop"
         severity="info"
-        value="53"
+        value="28"
       ></Tag>
-      Lorem Ipsum
+      Equipo de computo
+    </div>
+  );
+
+  const ContMonitUso = (
+    <div className="m-1">
+      <Tag
+        className="mr-2"
+        icon="pi pi-desktop"
+        severity="success"
+        value="34"
+      ></Tag>
+      Monitores
     </div>
   );
 
   const EnUso = (
     <div className="col-6">
       Equipo en uso
-      {Contador}
-      {Contador}
-      {Contador}
+      {ContComputoUso}
+      {ContMonitUso}
+      {ContComputoUso}
     </div>
   );
 
   const NoUso = (
     <div className="col-6">
       Equipo en inventario
-      {Contador}
-      {Contador}
+      {ContComputoUso}
+      {ContMonitUso}
     </div>
   );
 
