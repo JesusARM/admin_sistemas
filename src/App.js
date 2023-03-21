@@ -24,7 +24,7 @@ function Panel() {
     <div className="grid justify-content-center">
       <TabInventario title="Inventario"></TabInventario>
       <TabSoportes title="Soportes"></TabSoportes>
-      <TabPanel title="Mantenimientos"></TabPanel>
+      <TabMantenimientos title="Mantenimientos"></TabMantenimientos>
       <TabPanel title="Actividades"></TabPanel>
     </div>
   );
@@ -43,6 +43,52 @@ function TabPanel(props) {
           libero asperiores earum nam nobis, culpa ratione quam perferendis
           esse, cupiditate neque quas!
         </p>
+      </Card>
+    </div>
+  );
+}
+
+TabMantenimientos.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+function TabMantenimientos(props) {
+  const footer = (
+    <div className="flex justify-content-end gap-2">
+      <Button
+        icon="pi pi-plus"
+        rounded
+        text
+        raised
+        severity="success"
+        label="Añadir mantenimientos"
+      />
+      <Button
+        icon="pi pi-user"
+        rounded
+        text
+        raised
+        severity="info"
+        label="Administrar"
+      />
+    </div>
+  );
+
+  const Mantenimientos = (
+    <div className="col-12">
+      <Message severity="warn" text="4 Mantenimientos en EXPO" className="m-1" />
+      <Message severity="warn" text="2 Mantenimientos en IMPO" className="m-1" />
+      <Message severity="warn" text="5 Mantenimientos en ENLACE" className="m-1" />
+    </div>
+  );
+
+  const ResumenMantenimientos = (
+    <div className="surface-200 grid">{Mantenimientos}</div>
+  );
+
+  return (
+    <div className="col-5 ">
+      <Card title={props.title} footer={footer}>
+        {ResumenMantenimientos}
       </Card>
     </div>
   );
@@ -72,18 +118,6 @@ function TabSoportes(props) {
       />
     </div>
   );
-  //!Añadir conteo de cuantos equipos tiene y de que tipo
-  const Contador = (
-    <div className="m-1">
-      <Tag
-        className="mr-2"
-        icon="pi pi-briefcase"
-        severity="info"
-        value="53"
-      ></Tag>
-      Lorem Ipsum
-    </div>
-  );
 
   const Soportes = (
     <div className="col-12">
@@ -94,7 +128,6 @@ function TabSoportes(props) {
         className="m-1"
       />
       <Message severity="info" text="Nuevo soporte en ENLACE" className="m-1" />
-      <Message severity="info" text="Nuevo soporte en EXPO" className="m-1" />
     </div>
   );
 
