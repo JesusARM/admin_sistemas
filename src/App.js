@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 function App() {
   return (
     <div className="App">
-      <div className="surface-200">
+      <div className="surface-100">
         <h2 className="text-center">Adimistracion de sistemas</h2>
         <Panel></Panel>
       </div>
@@ -153,11 +153,11 @@ function TabMantenimientos(props) {
     </div>
   );
 
-  const ResumenMantenimientos = <div className="surface-200 grid">{mant}</div>;
+  const ResumenMantenimientos = <div className="surface-100 grid">{mant}</div>;
 
   return (
     <div className="col-5 ">
-      <Card title={HeadBar({ title: "Mantenimientos", tipo:"Mantenimiento" })}>
+      <Card title={HeadBar({ title: "Mantenimientos", tipo: "Mantenimiento" })}>
         {ResumenMantenimientos}
       </Card>
     </div>
@@ -189,27 +189,72 @@ function TabSoportes(props) {
     </div>
   );
 
+  //TODO: Modificar este componente para tener un mejor resultado
+  const contentsuccess = (
+    <>
+      <Button
+        className="m-0 col-11"
+        style={{ color: "var(--green-900)" }}
+        icon="pi pi-check"
+        text
+        severity="success"
+        label="Soporte completado en RH"
+      />
+      <Button
+        className="m-0 col-11"
+        style={{ color: "var(--green-900)" }}
+        icon="pi pi-check"
+        text
+        severity="success"
+        label=""
+      />
+    </>
+  );
+
+  const contentinfo = (
+    <>
+      <Button
+        className="m-0 col-12"
+        style={{ color: "var(--blue-900)" }}
+        icon="pi pi-info-circle"
+        text
+        severity="info"
+        label="Nuevo soporte de EXPO"
+      />
+    </>
+  );
+
   const Sop = (
     <>
       <Message
+        content={contentinfo}
         severity="info"
         text="Nuevo soporte en IMPO"
-        className="m-1 col-12"
+        className="m-1 p-0 col-12"
       />
       <Message
+        content={contentsuccess}
         severity="success"
         text="Soporte completado en RH"
-        className="m-1 col-12"
+        className="m-1 p-0 col-12"
       />
       <Message
-        severity="info"
-        text="Nuevo soporte en ENLACE"
-        className="m-1 col-12"
+        content={contentsuccess}
+        severity="success"
+        text="Soporte completado en RH"
+        className="m-1 p-0 col-12"
       />
       <Message
+        content={contentinfo}
         severity="info"
         text="Nuevo soporte en ENLACE"
-        className="m-1 col-12"
+        className="m-1 p-0 col-12"
+      />
+      <Message
+        content={contentinfo}
+        severity="info"
+        text="Nuevo soporte en ENLACE"
+        className="m-1 p-0 col-12"
       />
     </>
   );
@@ -222,11 +267,13 @@ function TabSoportes(props) {
     </div>
   );
 
-  const ResumenSoportes = <div className="surface-200 grid">{Soportes}</div>;
+  const ResumenSoportes = <div className="surface-100 grid">{Soportes}</div>;
 
   return (
     <div className="col-5 ">
-      <Card title={HeadBar({ title: "Soportes", tipo:"Soporte" })}>{ResumenSoportes}</Card>
+      <Card title={HeadBar({ title: "Soportes", tipo: "Soporte" })}>
+        {ResumenSoportes}
+      </Card>
     </div>
   );
 }
@@ -308,7 +355,7 @@ function TabInventario(props) {
   );
 
   const ResumenInventario = (
-    <div className="surface-200 grid">
+    <div className="surface-100 grid">
       {EnUso}
       {NoUso}
       {Dañados}
@@ -318,7 +365,9 @@ function TabInventario(props) {
   return (
     <div className="col-5 ">
       {/* <Card title={props.title} footer={footer}> */}
-      <Card title={HeadBar({ title: "Inventario" , tipo:"Equipo"})}>{ResumenInventario}</Card>
+      <Card title={HeadBar({ title: "Inventario", tipo: "Equipo" })}>
+        {ResumenInventario}
+      </Card>
     </div>
   );
 }
